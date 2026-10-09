@@ -1,1 +1,9 @@
 {{conf().name}} - {{conf().date}} - {{conf().location}}
+
+<button (click)="toggleBooking()">
+  {{
+    bookingService.isBooked(conf().id)
+      ? 'Annuler la réservation'
+      : 'Réserver'
+  }}
+</button>

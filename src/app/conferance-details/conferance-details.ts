@@ -1,4 +1,5 @@
-import { Component , input} from '@angular/core';
+import { Component , input , inject} from '@angular/core';
+import { BookingService } from '../services/booking';
 
 @Component({
   selector: 'app-conferance-details',
@@ -7,5 +8,11 @@ import { Component , input} from '@angular/core';
   styleUrl: './conferance-details.css',
 })
 export class ConferanceDetails {
-  conf=input<any>();
+    conf=input<any>();
+
+readonly bookingService = inject(BookingService);
+
+toggleBooking(): void {
+  this.bookingService.toggleBooking(this.conf().id);
+}
 }
