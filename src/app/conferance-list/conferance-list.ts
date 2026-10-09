@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component , inject } from '@angular/core';
 import { ConferanceDetails } from '../conferance-details/conferance-details';
+import { ConferenceService } from '../services/conference';
+import { BookingService } from '../services/booking';
 
 @Component({
   selector: 'app-conferance-list',
@@ -8,6 +10,7 @@ import { ConferanceDetails } from '../conferance-details/conferance-details';
   styleUrl: './conferance-list.css',
 })
 export class ConferanceList {
+
 conferences: any[] = [
     {
       name: 'Conference 1',
@@ -28,5 +31,14 @@ conferences: any[] = [
     }
 
   ];
+
+readonly conferenceService = inject(ConferenceService);
+readonly bookingService = inject(BookingService);
+
+readonly topics = ['Tous', 'Web', 'IA', 'Sécurité'];
+
+toggleBooking(id: number): void {
+  this.bookingService.toggleBooking(id);
+}
 
 }

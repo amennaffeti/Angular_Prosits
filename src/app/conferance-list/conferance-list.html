@@ -1,3 +1,11 @@
+<h2>Conférences à venir</h2>
+
+@for (topic of topics; track topic) {
+    <button (click)="conferenceService.filterByTopic(topic)">
+        {{ topic }}
+    </button>
+}
+
 @for (c of conferences; track $index) {
     <app-conferance-details [conf]="c"></app-conferance-details>
 }
