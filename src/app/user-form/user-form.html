@@ -1,0 +1,41 @@
+<form [formGroup]="userForm" (ngSubmit)="submit()">
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name">
+    @if (userForm.controls.name.touched && userForm.controls.name.invalid) {
+        <p>
+            @if (userForm.controls.name.hasError('required')) {
+                Name is required.
+            } @else if (userForm.controls.name.hasError('minlength')) {
+                Name must contain at least 3 characters.
+            }
+        </p>
+    }
+    <br>
+    <label for="email">Email:</label>
+    <input id="email" type="email" formControlName="email">
+    @if (userForm.controls.email.touched && userForm.controls.email.invalid) {
+        <p>
+            @if (userForm.controls.email.hasError('required')) {
+                Email is required.
+            } @else if (userForm.controls.email.hasError('email')) {
+                Enter a valid email address.
+            }
+        </p>
+    }
+    <br>
+    <label for="password">Password:</label>
+    <input id="password" type="password" formControlName="password">
+    @if (userForm.controls.password.touched && userForm.controls.password.invalid) {
+        <p>
+            @if (userForm.controls.password.hasError('required')) {
+                Password is required.
+            } @else if (userForm.controls.password.hasError('maxlength')) {
+                Password must contain no more than 6 characters.
+            }
+        </p>
+    }
+    <button [disabled]="userForm.invalid" type="submit">Submit</button>
+</form>
+@if (userForm.valid) {
+    <p>champs valide!!!</p>
+}
